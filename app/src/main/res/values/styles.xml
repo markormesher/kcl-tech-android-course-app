@@ -1,11 +1,45 @@
 <resources>
 
-    <!--
-    This is the theme that applies to the entire app.
-    It has DarkActionBar as is partent to inherit all of its features
-    -->
-    <style name="global_app_theme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Our app theme could be customised here. -->
-    </style>
+	<!--=====================================================================
+
+	** Style Resources **
+
+	In Android, almost everything about how a view looks can be specified,
+	allowing you complete control over the appearance of your app. For easy
+	management of styles, they can be defined in a resource file and re-used
+	throughout your application.
+
+	Each style consists of two main parts:
+		- An optional parent, allowing one class to "extend" another
+		- A set of <item> tags, which specify the style itself
+
+	Anyone who is familiar with CSS should find this very natural.
+
+	You can reference styles from resource files in other resource file (like
+	layouts) using this notation:
+
+	<TextView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		style="@style/my_text_style" />
+
+	======================================================================-->
+
+	<!--
+	This is the theme that applies to the entire app.
+	It has DarkActionBar as is parent to inherit all of its features.
+	-->
+	<style name="global_app_theme" parent="Theme.AppCompat.Light.DarkActionBar">
+		<!-- Our app theme could be customised here. -->
+	</style>
+
+	<!--
+	This style is applied to the "hello world" message in the first activity.
+	-->
+	<style name="hello_world_text">
+		<item name="android:textSize">@dimen/hello_world_text_size</item>
+		<item name="android:textColor">#043a5e</item>
+		<item name="android:textStyle">bold</item>
+	</style>
 
 </resources>

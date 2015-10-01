@@ -21,11 +21,11 @@
 	<!--
 	This is the name of the app that will appear in the app menu on devices.
 	-->
-    <string name="app_name">KCL Tech Todo</string>
+	<string name="app_name">KCL Tech Todo</string>
 
 	<!--
 	This string is going to be used in the app on the first activity.
 	-->
-    <string name="hello_world">Hello world!</string>
+	<string name="hello_world">Hello world!</string>
 
 </resources>

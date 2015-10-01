@@ -19,6 +19,10 @@
 		android:layout_width="@dimen/profile_image_width"
 		android:layout_height="@dimen/profile_image_height" />
 
+	Or, this notation in a style:
+
+	<item name="android:textSize">@dimen/hello_world_text_size</item>
+
 	The two most common dimension units are dp (density-independent pixels)
 	for layout sizes, and sp (scale-independent pixels) for font sizes. For
 	more information on dimension units in Android, check out this link:
@@ -31,7 +35,12 @@
 	These dimensions are the default screen margins,
 	as per the Android Design guidelines
 	-->
-    <dimen name="activity_horizontal_margin">16dp</dimen>
-    <dimen name="activity_vertical_margin">16dp</dimen>
+	<dimen name="activity_horizontal_margin">16dp</dimen>
+	<dimen name="activity_vertical_margin">16dp</dimen>
+
+	<!--
+	This is the size of the hello world message in the first activity.
+	-->
+	<dimen name="hello_world_text_size">20sp</dimen>
 
 </resources>
