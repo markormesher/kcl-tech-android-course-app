@@ -1,6 +1,7 @@
 <resources>
-    <string name="app_name">KCLTechTodo</string>
+
+    <string name="app_name">KCL Tech Todo</string>
 
     <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+
 </resources>

@@ -1,8 +1,11 @@
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
+    <!--
+    This is the theme that applies to the entire app.
+    It has DarkActionBar as is partent to inherit all of its features
+    -->
+    <style name="global_app_theme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Our app theme could be customised here. -->
     </style>
 
 </resources>
