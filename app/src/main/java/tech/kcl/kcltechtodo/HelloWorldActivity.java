@@ -7,8 +7,8 @@ import android.os.Bundle;
 
 ** Activities **
 
-This is an Activity, one of the basic building blocks of an Android app.
-An Activity can be thought of as a distinct "page" in your app. They
+This is an activity, one of the basic building blocks of an Android app.
+An activity can be thought of as a distinct "page" in your app. They
 have layouts made up of many Views (taken from an XML resource), they
 can handle user interactions, and your user can navigate between them.
 
