@@ -1,7 +1,27 @@
-<RelativeLayout
+<!--=====================================================================
+
+** Layout Resources **
+
+In Android, a layout tells the device how something should look - an
+activity, a fragment, a custom view type, etc.
+
+Layouts are made up of Views, some of which can contain other Views (this
+type of view can also be called a ViewGroup). For example, a TextView
+(which is a lot like a JLabel, for those from a Java Swing background)
+cannot contain other views, but a LinearLayout can (a LinearLayout will
+stack the views inside it in a line, vertically or horizontally).
+
+Views can be given IDs, which you can use to access them from your code.
+
+We will spend a lot of time working with different layouts and views to
+create each part of the app.
+
+======================================================================-->
+<LinearLayout
 		xmlns:android="http://schemas.android.com/apk/res/android"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
+		android:orientation="vertical"
 		android:paddingBottom="@dimen/activity_vertical_margin"
 		android:paddingLeft="@dimen/activity_horizontal_margin"
 		android:paddingRight="@dimen/activity_horizontal_margin"
@@ -13,4 +33,4 @@
 			android:text="@string/hello_world"
 			style="@style/hello_world_text"/>
 
-</RelativeLayout>
+</LinearLayout>
