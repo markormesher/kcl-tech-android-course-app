@@ -7,5 +7,6 @@
 	<!-- task list activity -->
 
 	<string name="task_list_activity_title">Tasks</string>
+	<string name="create_task">Create Task</string>
 
 </resources>
