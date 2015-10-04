@@ -25,11 +25,11 @@ public class Task {
 	}
 
 	public Task(Cursor input) throws IllegalArgumentException {
-		id = input.getLong(input.getColumnIndexOrThrow(Fields.id));
-		title = input.getString(input.getColumnIndexOrThrow(Fields.title));
-		notes = input.getString(input.getColumnIndexOrThrow(Fields.notes));
-		dueDate = new DateTime(input.getLong(input.getColumnIndexOrThrow(Fields.dueDate)));
-		complete = input.getInt(input.getColumnIndexOrThrow(Fields.complete)) == 1;
+		id = input.getLong(input.getColumnIndexOrThrow(Db.id));
+		title = input.getString(input.getColumnIndexOrThrow(Db.title));
+		notes = input.getString(input.getColumnIndexOrThrow(Db.notes));
+		dueDate = new DateTime(input.getLong(input.getColumnIndexOrThrow(Db.dueDate)));
+		complete = input.getInt(input.getColumnIndexOrThrow(Db.complete)) == 1;
 	}
 
 	/*=====================*
@@ -82,15 +82,16 @@ public class Task {
 
 	public ContentValues getContentValues() {
 		ContentValues output = new ContentValues();
-		output.put(Fields.id, id);
-		output.put(Fields.title, title);
-		output.put(Fields.notes, notes);
-		output.put(Fields.dueDate, dueDate.getMillis());
-		output.put(Fields.complete, complete ? 1 : 0);
+		output.put(Db.id, id);
+		output.put(Db.title, title);
+		output.put(Db.notes, notes);
+		output.put(Db.dueDate, dueDate.getMillis());
+		output.put(Db.complete, complete ? 1 : 0);
 		return output;
 	}
 
-	public interface Fields {
+	public interface Db {
+		String _tableName = "tasks";
 		String id = "id";
 		String title = "title";
 		String notes = "notes";

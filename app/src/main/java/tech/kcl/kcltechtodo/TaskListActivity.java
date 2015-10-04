@@ -1,7 +1,7 @@
 package tech.kcl.kcltechtodo;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -29,7 +29,7 @@ public class TaskListActivity extends AppCompatActivity {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		switch(item.getItemId()){
+		switch (item.getItemId()) {
 			case R.id.create_task:
 				Toast.makeText(getApplicationContext(), "This works!", Toast.LENGTH_LONG).show();
 				//TODO: send to create activity
