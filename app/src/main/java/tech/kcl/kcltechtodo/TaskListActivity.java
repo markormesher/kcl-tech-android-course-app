@@ -2,7 +2,6 @@ package tech.kcl.kcltechtodo;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -10,7 +9,6 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
-import org.joda.time.DateTime;
 import tech.kcl.kcltechtodo.data.DbHelper;
 import tech.kcl.kcltechtodo.data.Task;
 import tech.kcl.kcltechtodo.data.TaskListAdapter;
@@ -66,15 +64,15 @@ public class TaskListActivity extends AppCompatActivity {
 		switch (item.getItemId()) {
 			case R.id.create_task:
 				Toast.makeText(getApplicationContext(), "This works!", Toast.LENGTH_LONG).show();
-				Task t1 = new Task("Task " + System.currentTimeMillis(), "", DateTime.now(), false);
-				new DbHelper(getApplicationContext()).saveTask(t1);
-				refreshTasks();
 				return true;
 			default:
 				return super.onOptionsItemSelected(item);
 		}
 	}
 
+	/**
+	 * Sets the UI to either a "loading" state or a "data" stage, based on {@code busyRefreshing}.
+	 */
 	private void toggleBusyUi() {
 		runOnUiThread(new Runnable() {
 			@Override
@@ -114,7 +112,6 @@ public class TaskListActivity extends AppCompatActivity {
 
 				// load a new list of tasks
 				tasks = dbHelper.getTasks(true);
-				Log.d("TODO", tasks.size() + "");
 
 				// set new data on the adapter
 				listAdapter.setTasks(tasks);
