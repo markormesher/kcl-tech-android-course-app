@@ -34,7 +34,7 @@ jobs.
 		This section defines the "Hello World" activity.
 		You need to have an entry for every activity.
 		-->
-		<activity android:name=".HelloWorldActivity">
+		<activity android:name=".TaskListActivity">
 			<!--
 			We will cover intents and intent filters later in the course.
 			All you need to know for now is that this is how the device

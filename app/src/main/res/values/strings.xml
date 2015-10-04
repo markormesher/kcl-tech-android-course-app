@@ -1,31 +1,11 @@
 <resources>
 
-	<!--=====================================================================
+	<!-- global -->
 
-	** String Resources **
-
-	In Android, the strings used throughout your app should always be
-	declared in a resources file, like this one. This allows you to make
-	your app multi-lingual by simply creating a new set of resource files,
-	instead of digging through your code and replacing each string.
-
-	The strings you define here can be referenced in other XML files, and
-	in your app's code.
-
-	XML example: <TextView android:text="@string/hello_world" />
-
-	Java example: messageView.setText(getString(R.string.hello_world));
-
-	======================================================================-->
-
-	<!--
-	This is the name of the app that will appear in the app menu on devices.
-	-->
 	<string name="app_name">KCL Tech Todo</string>
 
-	<!--
-	This string is going to be used in the app on the first activity.
-	-->
-	<string name="hello_world">Hello world!</string>
+	<!-- task list activity -->
+
+	<string name="task_list_activity_title">Tasks</string>
 
 </resources>

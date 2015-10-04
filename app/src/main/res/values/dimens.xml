@@ -1,46 +1,10 @@
 <resources>
 
-	<!--=====================================================================
+	<!-- global -->
 
-	** Dimension Resources **
-
-	In Android, it's good to get into the habit of using a resource file (or
-	several files) to store your dimensions. Dimensions simply specify how
-	big something is: how wide an image should be, the font size to use on
-	some text, the spacing to leave between views, etc.
-
-	Keeping your dimensions in a file makes management much easier and can
-	improve the readability of your code.
-
-	You can reference dimensions from resource files in other resource file
-	(like layouts) using this notation:
-
-	<ImageView
-		android:layout_width="@dimen/profile_image_width"
-		android:layout_height="@dimen/profile_image_height" />
-
-	Or, this notation in a style:
-
-	<item name="android:textSize">@dimen/hello_world_text_size</item>
-
-	The two most common dimension units are dp (density-independent pixels)
-	for layout sizes, and sp (scale-independent pixels) for font sizes. For
-	more information on dimension units in Android, check out this link:
-
-	http://tiny.cc/android-dimens
-
-	======================================================================-->
-
-	<!--
-	These dimensions are the default screen margins,
-	as per the Android Design guidelines
-	-->
 	<dimen name="activity_horizontal_margin">16dp</dimen>
 	<dimen name="activity_vertical_margin">16dp</dimen>
 
-	<!--
-	This is the size of the hello world message in the first activity.
-	-->
-	<dimen name="hello_world_text_size">20sp</dimen>
+	<!-- task list activity -->
 
 </resources>
