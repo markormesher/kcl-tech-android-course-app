@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
+import org.joda.time.DateTime;
 import tech.kcl.kcltechtodo.data.DbHelper;
 import tech.kcl.kcltechtodo.data.Task;
 
@@ -53,6 +54,14 @@ public class EditTaskActivity extends AppCompatActivity {
 
 		// set up the date picker
 		dueDateInput.setCalendarViewShown(false);
+
+		// set a click listener on the save button
+		saveButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				saveButtonClicked();
+			}
+		});
 
 		// set initial UI
 		toggleBusyUi(true);
@@ -126,6 +135,12 @@ public class EditTaskActivity extends AppCompatActivity {
 			// put the task details into the UI
 			titleInput.setText(task.getTitle());
 			notesInput.setText(task.getNotes());
+			dueDateInput.init(
+					task.getDueDate().getYear(),
+					task.getDueDate().getMonthOfYear(),
+					task.getDueDate().getDayOfMonth(),
+					null
+			);
 
 			// the task has now loaded
 			Toast.makeText(getApplicationContext(), task.getTitle(), Toast.LENGTH_LONG).show();
@@ -133,6 +148,69 @@ public class EditTaskActivity extends AppCompatActivity {
 			// update the UI to show that we're not busy anymore
 			toggleBusyUi(false);
 		}
+	}
+
+	/**
+	 * This is called when the save button is clicked.
+	 */
+	private void saveButtonClicked() {
+		// get inputs
+		String title = titleInput.getText().toString().trim();
+		String notes = notesInput.getText().toString().trim();
+		DateTime dueDate = new DateTime(
+				dueDateInput.getYear(),
+				dueDateInput.getMonth() + 1,
+				dueDateInput.getDayOfMonth(),
+				23, 59, 59
+		);
+
+		// check title
+		if (title.length() == 0) {
+			Toast.makeText(
+					getApplicationContext(),
+					R.string.edit_task_activity_no_title_error,
+					Toast.LENGTH_LONG
+			).show();
+			return;
+		}
+
+		// check date
+		if (dueDate.isBeforeNow()) {
+			Toast.makeText(
+					getApplicationContext(),
+					R.string.edit_task_activity_past_date_error,
+					Toast.LENGTH_LONG
+			).show();
+			return;
+		}
+
+		// make a new task object
+		final Task task = new Task(title, notes, dueDate, false);
+
+		// set the ID, if we're updating an old one
+		if (!createNew) {
+			task.setId(editId);
+		}
+
+		// save it in the database, on a new thread
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				DbHelper dbHelper = new DbHelper(getApplicationContext());
+				dbHelper.saveTask(task);
+				runOnUiThread(new Runnable() {
+					@Override
+					public void run() {
+						Toast.makeText(
+								getApplicationContext(),
+								R.string.edit_task_activity_task_saved,
+								Toast.LENGTH_LONG
+						).show();
+						finish();
+					}
+				});
+			}
+		}).start();
 	}
 
 }

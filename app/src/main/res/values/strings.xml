@@ -7,7 +7,7 @@
 	<!-- task list activity -->
 
 	<string name="task_list_activity_title">Tasks</string>
-	<string name="create_task">Create Task</string>
+	<string name="task_list_activity_create_task">Create Task</string>
 
 	<string name="task_list_activity_complete_button">Complete</string>
 	<string name="task_list_activity_edit_button">Edit</string>
@@ -23,5 +23,10 @@
 	<string name="edit_task_activity_due_date_label">Due Date:</string>
 	<string name="edit_task_activity_notes_label">Notes:</string>
 	<string name="edit_task_activity_save_button">Save Task</string>
+
+	<string name="edit_task_activity_task_saved">Task saved!</string>
+
+	<string name="edit_task_activity_no_title_error">You did not enter a title!</string>
+	<string name="edit_task_activity_past_date_error">You entered a due date in the past!</string>
 
 </resources>
