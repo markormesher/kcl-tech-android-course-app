@@ -2,6 +2,7 @@ package tech.kcl.kcltechtodo;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
@@ -17,7 +18,6 @@ public class EditTaskActivity extends AppCompatActivity {
 	private EditText titleInput;
 	private DatePicker dueDateInput;
 	private EditText notesInput;
-	private Button saveButton;
 
 	// activity state
 	private boolean createNew = true;
@@ -50,7 +50,7 @@ public class EditTaskActivity extends AppCompatActivity {
 		titleInput = (EditText) findViewById(R.id.title_input);
 		dueDateInput = (DatePicker) findViewById(R.id.due_date_input);
 		notesInput = (EditText) findViewById(R.id.notes_input);
-		saveButton = (Button) findViewById(R.id.save_button);
+		Button saveButton = (Button) findViewById(R.id.save_button);
 
 		// set up the date picker
 		dueDateInput.setCalendarViewShown(false);
@@ -187,8 +187,10 @@ public class EditTaskActivity extends AppCompatActivity {
 		// make a new task object
 		final Task task = new Task(title, notes, dueDate, false);
 
-		// set the ID, if we're updating an old one
-		if (!createNew) {
+		// set the ID
+		if (createNew) {
+			task.setId(System.currentTimeMillis());
+		} else {
 			task.setId(editId);
 		}
 

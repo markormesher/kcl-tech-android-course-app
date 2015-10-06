@@ -53,7 +53,7 @@ public class TaskListActivity extends AppCompatActivity {
 		listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				taskClicked(id);
+				taskClicked((Task) listAdapter.getItem(position));
 			}
 		});
 
@@ -147,9 +147,9 @@ public class TaskListActivity extends AppCompatActivity {
 	/**
 	 * This is called when a task is clicked on.
 	 *
-	 * @param taskId the ID of the task
+	 * @param task the task
 	 */
-	private void taskClicked(final long taskId) {
+	private void taskClicked(final Task task) {
 		AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
 		dialogBuilder.setPositiveButton(
 				R.string.task_list_activity_complete_button,
@@ -166,11 +166,14 @@ public class TaskListActivity extends AppCompatActivity {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						Intent goToEditTask = new Intent(getApplicationContext(), EditTaskActivity.class);
-						goToEditTask.putExtra("task_id", taskId);
+						goToEditTask.putExtra("task_id", task.getId());
 						startActivity(goToEditTask);
 					}
 				}
 		);
+		if (task.getNotes() != null && task.getNotes().length() > 0) {
+			dialogBuilder.setMessage(task.getNotes());
+		}
 		dialogBuilder.setCancelable(true);
 		AlertDialog dialog = dialogBuilder.create();
 		dialog.setCanceledOnTouchOutside(true);
