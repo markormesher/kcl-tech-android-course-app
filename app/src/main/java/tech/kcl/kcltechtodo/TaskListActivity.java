@@ -45,7 +45,7 @@ public class TaskListActivity extends AppCompatActivity {
 		listView = (ListView) findViewById(R.id.list_view);
 
 		// set up adapter
-		listAdapter = new TaskListAdapter(getApplicationContext(), tasks);
+		listAdapter = new TaskListAdapter(this, tasks);
 		listView.setAdapter(listAdapter);
 
 		// carry out an initial refresh

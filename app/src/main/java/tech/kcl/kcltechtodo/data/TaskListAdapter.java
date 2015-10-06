@@ -1,10 +1,11 @@
 package tech.kcl.kcltechtodo.data;
 
-import android.content.Context;
+import android.app.Activity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+import tech.kcl.kcltechtodo.R;
 
 import java.util.ArrayList;
 
@@ -14,11 +15,11 @@ public class TaskListAdapter extends BaseAdapter {
 	 * Data *
 	 *======*/
 
-	private Context context;
+	private Activity activity;
 	private ArrayList<Task> tasks = null;
 
-	public TaskListAdapter(Context context, ArrayList<Task> tasks) {
-		this.context = context;
+	public TaskListAdapter(Activity activity, ArrayList<Task> tasks) {
+		this.activity = activity;
 		this.tasks = tasks;
 	}
 
@@ -47,8 +48,24 @@ public class TaskListAdapter extends BaseAdapter {
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		TextView textView = new TextView(context);
-		textView.setText(((Task) getItem(position)).getTitle());
-		return textView;
+		// recycle a view if possible
+		View view = convertView;
+		if (view == null) {
+			view = activity.getLayoutInflater().inflate(R.layout.task_list_item, parent, false);
+		}
+
+		// get view components
+		TextView title = (TextView) view.findViewById(R.id.title);
+		TextView dueDate = (TextView) view.findViewById(R.id.due_date);
+
+		// get task
+		Task task = (Task) getItem(position);
+
+		// set text
+		title.setText(task.getTitle());
+		dueDate.setText(task.getDueDate().toString("d MMM"));
+
+		// return the finished view
+		return view;
 	}
 }
