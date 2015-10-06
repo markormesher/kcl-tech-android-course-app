@@ -8,6 +8,7 @@
 
 	<string name="task_list_activity_title">Tasks</string>
 	<string name="task_list_activity_create_task">Create Task</string>
+	<string name="task_list_activity_no_tasks">Nothing to do - awesome!</string>
 
 	<string name="task_list_activity_complete_button">Complete</string>
 	<string name="task_list_activity_edit_button">Edit</string>

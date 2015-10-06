@@ -11,6 +11,13 @@
 			android:layout_height="wrap_content"
 			style="android:progressBarStyleInverse"/>
 
+	<TextView
+			android:id="@+id/no_tasks_message"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:visibility="gone"
+			android:text="@string/task_list_activity_no_tasks"/>
+
 	<ListView
 			android:id="@+id/list_view"
 			android:layout_width="match_parent"

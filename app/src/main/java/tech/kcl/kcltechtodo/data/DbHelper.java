@@ -80,7 +80,7 @@ public class DbHelper extends SQLiteOpenHelper {
 				null,
 				null,
 				null,
-				Task.Db.dueDate + " DESC"
+				Task.Db.dueDate + " ASC"
 		);
 
 		// loop over the result to get an output

@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import tech.kcl.kcltechtodo.data.DbHelper;
 import tech.kcl.kcltechtodo.data.Task;
 import tech.kcl.kcltechtodo.data.TaskListAdapter;
@@ -23,6 +24,7 @@ public class TaskListActivity extends AppCompatActivity {
 	// view components
 	private ProgressBar loadingIcon;
 	private ListView listView;
+	private TextView noTasksMessage;
 
 	// list view state
 	private ArrayList<Task> tasks = new ArrayList<>();
@@ -46,6 +48,7 @@ public class TaskListActivity extends AppCompatActivity {
 		// find UI components
 		loadingIcon = (ProgressBar) findViewById(R.id.loading_icon);
 		listView = (ListView) findViewById(R.id.list_view);
+		noTasksMessage = (TextView) findViewById(R.id.no_tasks_message);
 
 		// set up adapter
 		listAdapter = new TaskListAdapter(this, tasks);
@@ -88,16 +91,18 @@ public class TaskListActivity extends AppCompatActivity {
 	/**
 	 * Sets the UI to either a "loading" state or a "data" stage, based on {@code busyRefreshing}.
 	 */
-	private void toggleBusyUi() {
+	private void toggleBusyUi(final boolean empty) {
 		runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
 				if (busyRefreshing) {
 					loadingIcon.setVisibility(View.VISIBLE);
 					listView.setVisibility(View.GONE);
+					noTasksMessage.setVisibility(View.GONE);
 				} else {
 					loadingIcon.setVisibility(View.GONE);
-					listView.setVisibility(View.VISIBLE);
+					listView.setVisibility(empty ? View.GONE : View.VISIBLE);
+					noTasksMessage.setVisibility(empty ? View.VISIBLE : View.GONE);
 				}
 			}
 		});
@@ -116,7 +121,7 @@ public class TaskListActivity extends AppCompatActivity {
 
 		// show that we're now busy
 		busyRefreshing = true;
-		toggleBusyUi();
+		toggleBusyUi(false);
 
 		// start loading, on a new thread
 		new Thread(new Runnable() {
@@ -139,7 +144,7 @@ public class TaskListActivity extends AppCompatActivity {
 
 				// show that we're no longer busy
 				busyRefreshing = false;
-				toggleBusyUi();
+				toggleBusyUi(tasks.size() == 0);
 			}
 		}).start();
 	}
