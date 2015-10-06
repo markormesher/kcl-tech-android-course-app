@@ -156,7 +156,19 @@ public class TaskListActivity extends AppCompatActivity {
 				new DialogInterface.OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
-						// TODO
+						new Thread(new Runnable() {
+							@Override
+							public void run() {
+								task.setComplete(true);
+								new DbHelper(getApplicationContext()).saveTask(task);
+								runOnUiThread(new Runnable() {
+									@Override
+									public void run() {
+										refreshTasks();
+									}
+								});
+							}
+						}).start();
 					}
 				}
 		);

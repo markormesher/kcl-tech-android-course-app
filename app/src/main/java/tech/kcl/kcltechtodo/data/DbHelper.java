@@ -86,9 +86,9 @@ public class DbHelper extends SQLiteOpenHelper {
 		// loop over the result to get an output
 		ArrayList<Task> output = new ArrayList<>();
 		if (result == null || !result.moveToFirst()) return output;
-		while (result.moveToNext()) {
+		do {
 			output.add(new Task(result));
-		}
+		} while (result.moveToNext());
 
 		// we're finished with this cursor now, so we can close it
 		result.close();

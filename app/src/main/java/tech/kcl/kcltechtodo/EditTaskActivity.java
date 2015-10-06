@@ -2,7 +2,6 @@ package tech.kcl.kcltechtodo;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
@@ -141,9 +140,6 @@ public class EditTaskActivity extends AppCompatActivity {
 					task.getDueDate().getDayOfMonth(),
 					null
 			);
-
-			// the task has now loaded
-			Toast.makeText(getApplicationContext(), task.getTitle(), Toast.LENGTH_LONG).show();
 
 			// update the UI to show that we're not busy anymore
 			toggleBusyUi(false);
