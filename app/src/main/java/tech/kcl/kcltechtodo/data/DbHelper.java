@@ -96,4 +96,34 @@ public class DbHelper extends SQLiteOpenHelper {
 		// return the finished result
 		return output;
 	}
+
+	/**
+	 * Gets a single task from the database.
+	 *
+	 * @param taskId the ID of the task to retrieve
+	 * @return the task, or {@code null} on failure
+	 */
+	public Task getTask(long taskId) {
+		// get a copy of the database that we're allowed to read from
+		SQLiteDatabase db = getReadableDatabase();
+		if (db == null) return null;
+
+		// search for the task
+		Cursor result = db.query(
+				Task.Db._tableName,
+				null,
+				Task.Db.id + " = ?",
+				new String[]{taskId + ""},
+				null,
+				null,
+				null
+		);
+
+		// convert the query result to a task
+		if (result.moveToFirst()) {
+			return new Task(result);
+		} else {
+			return null;
+		}
+	}
 }

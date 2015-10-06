@@ -43,7 +43,8 @@ public class TaskListAdapter extends BaseAdapter {
 
 	@Override
 	public long getItemId(int position) {
-		return position;
+		Task t = (Task) getItem(position);
+		return t == null ? -1 : t.getId();
 	}
 
 	@Override

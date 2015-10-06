@@ -1,14 +1,17 @@
 package tech.kcl.kcltechtodo;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 import tech.kcl.kcltechtodo.data.DbHelper;
 import tech.kcl.kcltechtodo.data.Task;
 import tech.kcl.kcltechtodo.data.TaskListAdapter;
@@ -47,6 +50,12 @@ public class TaskListActivity extends AppCompatActivity {
 		// set up adapter
 		listAdapter = new TaskListAdapter(this, tasks);
 		listView.setAdapter(listAdapter);
+		listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+				taskClicked(id);
+			}
+		});
 
 		// carry out an initial refresh
 		refreshTasks();
@@ -63,7 +72,7 @@ public class TaskListActivity extends AppCompatActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 			case R.id.create_task:
-				Toast.makeText(getApplicationContext(), "This works!", Toast.LENGTH_LONG).show();
+				startActivity(new Intent(getApplicationContext(), EditTaskActivity.class));
 				return true;
 			default:
 				return super.onOptionsItemSelected(item);
@@ -127,6 +136,39 @@ public class TaskListActivity extends AppCompatActivity {
 				toggleBusyUi();
 			}
 		}).start();
+	}
+
+	/**
+	 * This is called when a task is clicked on.
+	 *
+	 * @param taskId the ID of the task
+	 */
+	private void taskClicked(final long taskId) {
+		AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+		dialogBuilder.setPositiveButton(
+				R.string.task_list_activity_complete_button,
+				new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						// TODO
+					}
+				}
+		);
+		dialogBuilder.setNeutralButton(
+				R.string.task_list_activity_edit_button,
+				new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						Intent goToEditTask = new Intent(getApplicationContext(), EditTaskActivity.class);
+						goToEditTask.putExtra("task_id", taskId);
+						startActivity(goToEditTask);
+					}
+				}
+		);
+		dialogBuilder.setCancelable(true);
+		AlertDialog dialog = dialogBuilder.create();
+		dialog.setCanceledOnTouchOutside(true);
+		dialog.show();
 	}
 
 }
