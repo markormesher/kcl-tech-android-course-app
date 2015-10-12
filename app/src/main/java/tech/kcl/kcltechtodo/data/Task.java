@@ -17,7 +17,6 @@ public class Task {
 	 *==============*/
 
 	public Task(String title, String notes, DateTime dueDate, boolean complete) {
-		this.id = System.currentTimeMillis();
 		this.title = title;
 		this.notes = notes;
 		this.dueDate = dueDate;

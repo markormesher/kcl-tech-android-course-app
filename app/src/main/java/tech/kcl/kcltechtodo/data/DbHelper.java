@@ -80,20 +80,50 @@ public class DbHelper extends SQLiteOpenHelper {
 				null,
 				null,
 				null,
-				Task.Db.dueDate + " DESC"
+				Task.Db.dueDate + " ASC"
 		);
 
 		// loop over the result to get an output
 		ArrayList<Task> output = new ArrayList<>();
 		if (result == null || !result.moveToFirst()) return output;
-		while (result.moveToNext()) {
+		do {
 			output.add(new Task(result));
-		}
+		} while (result.moveToNext());
 
 		// we're finished with this cursor now, so we can close it
 		result.close();
 
 		// return the finished result
 		return output;
+	}
+
+	/**
+	 * Gets a single task from the database.
+	 *
+	 * @param taskId the ID of the task to retrieve
+	 * @return the task, or {@code null} on failure
+	 */
+	public Task getTask(long taskId) {
+		// get a copy of the database that we're allowed to read from
+		SQLiteDatabase db = getReadableDatabase();
+		if (db == null) return null;
+
+		// search for the task
+		Cursor result = db.query(
+				Task.Db._tableName,
+				null,
+				Task.Db.id + " = ?",
+				new String[]{taskId + ""},
+				null,
+				null,
+				null
+		);
+
+		// convert the query result to a task
+		if (result.moveToFirst()) {
+			return new Task(result);
+		} else {
+			return null;
+		}
 	}
 }

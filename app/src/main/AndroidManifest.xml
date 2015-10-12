@@ -1,50 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<!--=====================================================================
-
-** App Manifest **
-
-This is the manifest file for your app. It serves as a statement of
-everything your app includes, and everything it might need from the
-system. The manifest is how apps request permissions, sign up for
-external services, create their own services, and carry out many other
-jobs.
-
-======================================================================-->
-
 <manifest
 		xmlns:android="http://schemas.android.com/apk/res/android"
 		xmlns:tools="http://schemas.android.com/tools"
 		package="tech.kcl.kcltechtodo">
 
-	<!--
-	This section defines properties of your entire application,
-	like it's name and icon. Your manifest should only have one
-	<application> tag.
-	-->
 	<application
 			android:allowBackup="true"
 			android:fullBackupContent="true"
-			android:icon="@mipmap/ic_launcher"
+			android:icon="@drawable/logo_original"
 			android:label="@string/app_name"
 			android:theme="@style/global_app_theme"
 			tools:ignore="UnusedAttribute">
 
-		<!--
-		This section defines the "Hello World" activity.
-		You need to have an entry for every activity.
-		-->
 		<activity android:name=".TaskListActivity">
-			<!--
-			We will cover intents and intent filters later in the course.
-			All you need to know for now is that this is how the device
-			knows which activity to start from when someone opens your app.
-			-->
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN"/>
 				<category android:name="android.intent.category.LAUNCHER"/>
 			</intent-filter>
 		</activity>
+
+		<activity android:name=".EditTaskActivity"/>
 
 	</application>
 

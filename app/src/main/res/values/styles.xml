@@ -4,4 +4,10 @@
 		<!-- Our app theme could be customised here. -->
 	</style>
 
+	<style name="edit_task_activity_label">
+		<item name="android:textSize">18sp</item>
+		<item name="android:textStyle">bold</item>
+		<item name="android:textColor">#222222</item>
+	</style>
+
 </resources>
